@@ -1,4 +1,4 @@
-### A simple Google calender + task listing project
+### A simple Google calendar + task listing project
 
 #### Features
 
