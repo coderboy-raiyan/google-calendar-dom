@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { ICreateDayElementOptions } from "./interfaces/DayElements/createDayElementTypes";
+import { ICreateDayElementOptions } from "./interfaces/DayElementTypes/createDayElementTypes";
 
 function createDayElement(date: Date, options: ICreateDayElementOptions = {}) {
   const {
@@ -8,7 +8,7 @@ function createDayElement(date: Date, options: ICreateDayElementOptions = {}) {
     showWeekName = false,
   } = options;
 
-  const dayElement = ` <div class="day ${
+  const dayElement: any = ` <div class="day ${
     !isCurrentMonth ? "non-month-day" : ""
   }" data-date-wrapper>
     <div class="day-header">

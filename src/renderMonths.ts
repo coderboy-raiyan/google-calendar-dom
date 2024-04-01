@@ -9,6 +9,7 @@ import {
   startOfWeek,
 } from "date-fns";
 import createDayElement from "./createDayElement";
+import { openAddModalEvent } from "./modal";
 
 const daysContainer = document.querySelector(
   "[data-calender-days]"
@@ -20,7 +21,10 @@ function renderMonth(monthDate: Date) {
   ) as HTMLDivElement;
   monthTitle.textContent = format(monthDate, "MMMM yyy");
 
+  const calenderDates: Date[] = [];
+
   const dayElements = getCalenderDates(monthDate).map((date, index) => {
+    calenderDates.push(date);
     return createDayElement(date, {
       isCurrentMonth: isSameMonth(monthDate, date),
       isCurrentDay: isSameDay(Date.now(), date),
@@ -32,6 +36,15 @@ function renderMonth(monthDate: Date) {
   dayElements.forEach((ele) => {
     daysContainer.insertAdjacentHTML("beforeend", ele);
   });
+  const dayElementDiv = document.querySelectorAll(".day");
+
+  for (let i = 0; i < dayElementDiv.length; i++) {
+    const calenderDate = calenderDates[i];
+    const ele = Array.from(dayElementDiv)[i];
+    ele.querySelector("[data-add-event-btn]")?.addEventListener("click", () => {
+      openAddModalEvent(calenderDate);
+    });
+  }
 }
 
 function getCalenderDates(date: Date) {
