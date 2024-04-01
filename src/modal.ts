@@ -16,12 +16,11 @@ const eventModalTemplate = document.querySelector(
   "#event-form-template"
 ) as HTMLTemplateElement;
 
-export function openAddModalEvent(date: Date | number) {
-  openModal(
-    getEventFormModalBody({ date }, (event) => {
-      console.log(event);
-    })
-  );
+export function openAddModalEvent(
+  date: Date | number,
+  saveCallBack: (event: IEventType) => void
+) {
+  openModal(getEventFormModalBody({ date }, saveCallBack));
 }
 export function openEditModalEvent(event: IEventType) {
   openModal(getEventFormModalBody(event));
@@ -137,4 +136,8 @@ function closeModal() {
 
 modalModalOverlay.addEventListener("click", () => {
   closeModal();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
 });

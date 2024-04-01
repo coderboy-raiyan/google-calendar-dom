@@ -9,7 +9,10 @@ import {
   startOfWeek,
 } from "date-fns";
 import createDayElement from "./createDayElement";
+import createEventElement from "./createEventElement";
+import { IEventType } from "./interfaces/EventTypes/eventTypes";
 import { openAddModalEvent } from "./modal";
+import { addEvent, getEventsForDay } from "./storeAndShowEvents";
 
 const daysContainer = document.querySelector(
   "[data-calender-days]"
@@ -36,14 +39,32 @@ function renderMonth(monthDate: Date) {
   dayElements.forEach((ele) => {
     daysContainer.insertAdjacentHTML("beforeend", ele);
   });
+
+  // Event adding and Task listing
   const dayElementDiv = document.querySelectorAll(".day");
 
   for (let i = 0; i < dayElementDiv.length; i++) {
     const calenderDate = calenderDates[i];
     const ele = Array.from(dayElementDiv)[i];
     ele.querySelector("[data-add-event-btn]")?.addEventListener("click", () => {
-      openAddModalEvent(calenderDate);
+      openAddModalEvent(calenderDate, (event: IEventType) => {
+        addEvent(event);
+        renderMonth(calenderDate);
+      });
     });
+
+    const eventContainer = ele.querySelector(
+      "[data-events-container]"
+    ) as HTMLDivElement;
+
+    eventContainer.innerText = "";
+
+    const allEvents = getEventsForDay(calenderDate);
+    if (allEvents.length) {
+      allEvents.forEach((event) => {
+        eventContainer.append(createEventElement(event));
+      });
+    }
   }
 }
 

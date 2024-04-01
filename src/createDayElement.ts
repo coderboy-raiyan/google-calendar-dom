@@ -20,30 +20,8 @@ function createDayElement(date: Date, options: ICreateDayElementOptions = {}) {
       }" data-day-number>${date.getDate()}</div>
       <button class="add-event-btn" data-add-event-btn>+</button>
     </div>
-    <div class="events">
-      <button class="all-day-event green event">
-        <div class="event-name">Short</div>
-      </button>
-      <button class="event">
-        <div class="color-dot blue"></div>
-        <div class="event-time">7am</div>
-        <div class="event-name">Event Name</div>
-      </button>
-      <button class="event">
-        <div class="color-dot green"></div>
-        <div class="event-time">8am</div>
-        <div class="event-name">Event Name</div>
-      </button>
-      <button class="event">
-        <div class="color-dot blue"></div>
-        <div class="event-time">9am</div>
-        <div class="event-name">Event Name</div>
-      </button>
-      <button class="event">
-        <div class="color-dot blue"></div>
-        <div class="event-time">10am</div>
-        <div class="event-name">Event Name</div>
-      </button>
+    <div class="events" data-events-container>
+     
     </div>
     <button class="events-view-more-btn"></button>
   </div>`;

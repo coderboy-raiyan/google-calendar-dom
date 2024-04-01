@@ -3,4 +3,3 @@ export type ICreateDayElementOptions = {
   isCurrentDay?: boolean;
   showWeekName?: boolean;
 };
-export const data = [""];

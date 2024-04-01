@@ -125,6 +125,20 @@
       </form>
     </template>
 
+    <template id="all-day-event-template">
+      <button class="all-day-event event" data-event>
+        <div class="event-name" data-name></div>
+      </button>
+    </template>
+
+    <template id="timed-event-template">
+      <button class="event" data-event>
+        <div class="color-dot" data-color></div>
+        <div class="event-time" data-time></div>
+        <div class="event-name" data-name></div>
+      </button>
+    </template>
+
     <script type="module" src="src/main.ts"></script>
   </body>
 </html>
